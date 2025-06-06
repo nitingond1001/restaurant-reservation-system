@@ -1,12 +1,16 @@
 import { Application, Request, Response } from 'express';
 import AuthController from '../controllers/authController';
+import path from 'path';
 
 const authController = new AuthController();
 
 export function setAuthRoutes(app: Application) {
+    app.set('view engine', 'ejs');
+    app.set('views', path.join(__dirname, '../views'));
+
     // Registration form (GET)
     app.get('/register', (_req: Request, res: Response) => {
-        res.render('register'); // or res.send('Register Page');
+        res.render('register');
     });
 
     // Registration handler (POST)

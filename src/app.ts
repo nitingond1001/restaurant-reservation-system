@@ -17,6 +17,10 @@ setReservationRoutes(app);
 setTableRoutes(app);
 setDashboardRoutes(app);
 
+app.get('/', (_req, res) => {
+    res.send('Restaurant Reservation System is running!');
+});
+
 app.use(errorMiddleware);
 
 app.listen(PORT, () => {

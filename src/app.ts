@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Root route FIRST
 app.get('/', (_req, res) => {
-    res.send('Restaurant Reservation System is running!');
+    res.render('index');
 });
 
 setAuthRoutes(app);

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Your Dashboard, <%= user.name %>!</h1>
+        <nav>
+            <ul>
+                <li><a href="/reservations">My Reservations</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Upcoming Reservations</h2>
+            <% if (reservations.length > 0) { %>
+                <ul>
+                    <% reservations.forEach(reservation => { %>
+                        <li>
+                            <strong>Date:</strong> <%= reservation.date %> 
+                            <strong>Time:</strong> <%= reservation.time %> 
+                            <strong>Guests:</strong> <%= reservation.guests %>
+                            <a href="/reservations/edit/<%= reservation.id %>">Edit</a>
+                            <a href="/reservations/cancel/<%= reservation.id %>">Cancel</a>
+                        </li>
+                    <% }); %>
+                </ul>
+            <% } else { %>
+                <p>You have no upcoming reservations.</p>
+            <% } %>
+        </section>
+        <section>
+            <h2>Reservation History</h2>
+            <% if (history.length > 0) { %>
+                <ul>
+                    <% history.forEach(reservation => { %>
+                        <li>
+                            <strong>Date:</strong> <%= reservation.date %> 
+                            <strong>Time:</strong> <%= reservation.time %> 
+                            <strong>Guests:</strong> <%= reservation.guests %>
+                        </li>
+                    <% }); %>
+                </ul>
+            <% } else { %>
+                <p>You have no reservation history.</p>
+            <% } %>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Restaurant Reservation System</p>
+    </footer>
+</body>
+</html>

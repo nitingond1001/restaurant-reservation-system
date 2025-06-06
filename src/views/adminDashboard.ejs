@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="/admin/reservations">Manage Reservations</a></li>
+                <li><a href="/admin/tables">Manage Tables</a></li>
+                <li><a href="/admin/users">Manage Users</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Reservations Overview</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Reservation ID</th>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Guests</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% reservations.forEach(reservation => { %>
+                        <tr>
+                            <td><%= reservation.id %></td>
+                            <td><%= reservation.user.name %></td>
+                            <td><%= reservation.date %></td>
+                            <td><%= reservation.time %></td>
+                            <td><%= reservation.guests %></td>
+                            <td><%= reservation.status %></td>
+                            <td>
+                                <a href="/admin/reservations/<%= reservation.id %>/edit">Edit</a>
+                                <a href="/admin/reservations/<%= reservation.id %>/cancel">Cancel</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Restaurant Reservation System</p>
+    </footer>
+</body>
+</html>

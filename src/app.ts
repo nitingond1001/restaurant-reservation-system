@@ -12,14 +12,15 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Root route FIRST
+app.get('/', (_req, res) => {
+    res.send('Restaurant Reservation System is running!');
+});
+
 setAuthRoutes(app);
 setReservationRoutes(app);
 setTableRoutes(app);
 setDashboardRoutes(app);
-
-app.get('/', (_req, res) => {
-    res.send('Restaurant Reservation System is running!');
-});
 
 app.use(errorMiddleware);
 

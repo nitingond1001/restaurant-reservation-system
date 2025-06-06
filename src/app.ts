@@ -5,8 +5,13 @@ import setReservationRoutes from './routes/reservationRoutes';
 import { setTableRoutes } from './routes/tableRoutes';
 import { setDashboardRoutes } from './routes/dashboardRoutes';
 import errorMiddleware from './middlewares/errorMiddleware';
+import path from 'path';
 
 const app = express();
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '../views'));
+
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());

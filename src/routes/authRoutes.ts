@@ -9,6 +9,11 @@ export function setAuthRoutes(app: Application) {
         res.render('register');
     });
 
+    // Login form (GET)
+    app.get('/login', (_req: Request, res: Response) => {
+        res.render('login');
+    });
+
     // Registration handler (POST)
     app.post('/register', (_req: Request, _res: Response) => {
         // registration logic

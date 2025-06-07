@@ -38,6 +38,11 @@ mongoose
   .then(() => {
     console.log("✅ MongoDB connected successfully");
 
+    app.get("/", (req, res) => {
+    res.send("✅ Backend API is live and connected to MongoDB!");
+    });
+
+
     app.listen(PORT, () => {
       console.log(`🚀 Server is running at http://localhost:${PORT}`);
     });

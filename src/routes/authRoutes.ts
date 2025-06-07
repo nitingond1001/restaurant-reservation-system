@@ -29,7 +29,7 @@ export function setAuthRoutes(app: Application) {
                 return res.status(409).send('User already exists.');
             }
             // Create user
-            const user = new User({ username, email, password });
+            const user = new User({ name: username, email, password });
             await user.save();
             res.redirect('/login');
         } catch (err) {

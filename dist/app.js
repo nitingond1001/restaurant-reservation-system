@@ -1,30 +1,52 @@
-// ... your imports ...
+"use strict";
+
+import express from "express";
+import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-dotenv.config();
 
-// Express app setup
-const app = (0, express_1.default)();
+import { setAuthRoutes } from "./routes/authRoutes";
+import reservationRoutes from "./routes/reservationRoutes";
+import { setTableRoutes } from "./routes/tableRoutes";
+import { setDashboardRoutes } from "./routes/dashboardRoutes";
+import errorMiddleware from "./middlewares/errorMiddleware";
+
+dotenv.config(); // Load environment variables from .env
+
+const app = express();
 const PORT = process.env.PORT || 3000;
-app.use(body_parser_1.default.json());
-app.use(body_parser_1.default.urlencoded({ extended: true }));
+const DB_URI = process.env.DB_URI;
 
-// Routes
-(0, setAuthRoutes)(app);
-(0, reservationRoutes_1.default)(app);
-(0, setTableRoutes)(app);
-(0, setDashboardRoutes)(app);
-app.use(errorMiddleware_1.default);
+if (!DB_URI) {
+  console.error("❌ DB_URI is missing in environment variables");
+  process.exit(1);
+}
 
-// MongoDB connection + start server
-const DB_URI = process.env.DB_URI || "";
-mongoose.connect(DB_URI)
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+setAuthRoutes(app);
+reservationRoutes(app);
+setTableRoutes(app);
+setDashboardRoutes(app);
+app.use(errorMiddleware);
+
+console.log("🌐 Trying to connect to MongoDB...");
+
+mongoose
+  .connect(DB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    dbName: "reservation_db", // Replace with your DB name if different
+  })
   .then(() => {
-    console.log("✅ MongoDB connected");
+    console.log("✅ MongoDB connected successfully");
     app.listen(PORT, () => {
-      console.log(`🚀 Server is running on http://localhost:${PORT}`);
+      console.log(`🚀 Server is running at http://localhost:${PORT}`);
     });
   })
   .catch((err) => {
-    console.error("❌ MongoDB connection failed:", err);
+    console.error("❌ MongoDB connection error:");
+    console.error(err);
+    process.exit(1);
   });

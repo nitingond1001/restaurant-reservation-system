@@ -30,5 +30,4 @@ class AuthController {
         next();
     }
 }
-const _default = AuthController;
-export { _default as default };
+exports.default = AuthController;

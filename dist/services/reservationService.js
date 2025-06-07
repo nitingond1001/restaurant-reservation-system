@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ReservationService = void 0;
 class ReservationService {
     validateReservation(reservationData) {
         // Implement validation logic for reservation data
@@ -40,5 +41,4 @@ class ReservationService {
         });
     }
 }
-const _ReservationService = ReservationService;
-export { _ReservationService as ReservationService };
+exports.ReservationService = ReservationService;

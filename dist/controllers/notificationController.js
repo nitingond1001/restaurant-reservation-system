@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.NotificationController = void 0;
 class NotificationController {
     constructor(emailService) {
         this.emailService = emailService;
@@ -28,5 +29,4 @@ class NotificationController {
         });
     }
 }
-const _NotificationController = NotificationController;
-export { _NotificationController as NotificationController };
+exports.NotificationController = NotificationController;

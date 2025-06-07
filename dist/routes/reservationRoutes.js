@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-import { ReservationController } from "../controllers/reservationController";
-const reservationController = new ReservationController();
+const reservationController_1 = require("../controllers/reservationController");
+const reservationController = new reservationController_1.ReservationController();
 function setReservationRoutes(app) {
     app.post('/reservations', reservationController.createReservation);
     app.get('/reservations/user/:userId', reservationController.getUserReservations);
     app.put('/reservations/:reservationId', reservationController.modifyReservation);
     app.delete('/reservations/:reservationId', reservationController.cancelReservation);
 }
-const _default = setReservationRoutes;
-export { _default as default };
+exports.default = setReservationRoutes;

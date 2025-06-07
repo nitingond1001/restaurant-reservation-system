@@ -37,5 +37,4 @@ const authMiddleware = (req, res, next) => {
         }
     }));
 };
-const _default = authMiddleware;
-export { _default as default };
+exports.default = authMiddleware;

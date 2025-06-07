@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-import { Schema, model } from "mongoose";
-const reservationSchema = new Schema({
+const mongoose_1 = require("mongoose");
+const reservationSchema = new mongoose_1.Schema({
     date: {
         type: Date,
         required: true
@@ -16,16 +16,15 @@ const reservationSchema = new Schema({
         min: 1
     },
     user: {
-        type: Schema.Types.ObjectId,
+        type: mongoose_1.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
     table: {
-        type: Schema.Types.ObjectId,
+        type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Table',
         required: true
     }
 }, { timestamps: true });
-const Reservation = (0, model)('Reservation', reservationSchema);
-const _default = Reservation;
-export { _default as default };
+const Reservation = (0, mongoose_1.model)('Reservation', reservationSchema);
+exports.default = Reservation;

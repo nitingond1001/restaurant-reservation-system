@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-import { Schema, model } from "mongoose";
-const tableSchema = new Schema({
+const mongoose_1 = require("mongoose");
+const tableSchema = new mongoose_1.Schema({
     tableNumber: {
         type: Number,
         required: true,
@@ -17,6 +17,5 @@ const tableSchema = new Schema({
         default: 'available'
     }
 });
-const Table = (0, model)('Table', tableSchema);
-const _default = Table;
-export { _default as default };
+const Table = (0, mongoose_1.model)('Table', tableSchema);
+exports.default = Table;

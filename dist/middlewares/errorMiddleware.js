@@ -7,5 +7,4 @@ const errorMiddleware = (err, _req, res, _next) => {
         error: process.env.NODE_ENV === 'development' ? err : {}
     });
 };
-const _default = errorMiddleware;
-export { _default as default };
+exports.default = errorMiddleware;

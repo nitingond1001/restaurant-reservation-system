@@ -56,5 +56,4 @@ class EmailService {
         });
     }
 }
-const _default = new EmailService();
-export { _default as default };
+exports.default = new EmailService();

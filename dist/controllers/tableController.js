@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TableController = void 0;
 class TableController {
     constructor() {
         this.tables = []; // Initialize with an empty array or fetch from a database
@@ -23,5 +24,4 @@ class TableController {
         return false;
     }
 }
-const _TableController = TableController;
-export { _TableController as TableController };
+exports.TableController = TableController;

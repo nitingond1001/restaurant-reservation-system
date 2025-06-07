@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-import { Router } from "express";
-import { TableController } from "../controllers/tableController";
+exports.setTableRoutes = void 0;
+const express_1 = require("express");
+const tableController_1 = require("../controllers/tableController");
 function setTableRoutes(app) {
-    const router = (0, Router)();
-    const tableController = new TableController();
+    const router = (0, express_1.Router)();
+    const tableController = new tableController_1.TableController();
     router.get('/availability', (req, res) => {
         const { date, time, guests } = req.query;
         if (typeof date !== 'string' || typeof time !== 'string' || typeof guests !== 'string') {
@@ -16,5 +17,4 @@ function setTableRoutes(app) {
     router.post('/add', tableController.addTable.bind(tableController));
     app.use('/api/tables', router);
 }
-const _setTableRoutes = setTableRoutes;
-export { _setTableRoutes as setTableRoutes };
+exports.setTableRoutes = setTableRoutes;

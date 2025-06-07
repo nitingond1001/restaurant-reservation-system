@@ -27,6 +27,8 @@ app.use(body_parser_1.default.urlencoded({ extended: true }));
 (0, tableRoutes_1.setTableRoutes)(app);
 (0, dashboardRoutes_1.setDashboardRoutes)(app);
 app.use(errorMiddleware_1.default);
+app.set("view engine", "ejs");
+app.set("views", __dirname + "/../views");
 console.log("🌐 Trying to connect to MongoDB...");
 mongoose_1.default
     .connect(DB_URI, {
@@ -34,8 +36,8 @@ mongoose_1.default
 })
     .then(() => {
     console.log("✅ MongoDB connected successfully");
-    app.get("/", (req, res) => {
-        res.send("✅ Backend API is live and connected to MongoDB!");
+    app.get("/", (_req, res) => {
+        res.render("index");
     });
     app.listen(PORT, () => {
         console.log(`🚀 Server is running at http://localhost:${PORT}`);

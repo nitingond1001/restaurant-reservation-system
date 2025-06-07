@@ -39,7 +39,7 @@ function setAuthRoutes(app) {
                 return res.status(409).send('User already exists.');
             }
             // Create user
-            const user = new userModel_1.default({ username, email, password });
+            const user = new userModel_1.default({ name: username, email, password });
             yield user.save();
             res.redirect('/login');
         }

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import AuthController from '../controllers/authController';
 import { Application, Request, Response } from 'express';
+import User from '../models/userModel'; // Adjust the path if needed
 
 const router = Router();
 const authController = new AuthController();
@@ -38,6 +39,13 @@ router.get(
     }
 );
 
-export const setDashboardRoutes = (app: Application): void => {
-    app.use('/dashboard', router);
-};
+export function setDashboardRoutes(app: Application) {
+    app.get('/admin/users', async (_req: Request, res: Response) => {
+        try {
+            const users = await User.find();
+            res.render('users', { users });
+        } catch (err) {
+            res.status(500).send('Error fetching users');
+        }
+    });
+}
